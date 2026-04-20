@@ -764,11 +764,7 @@
   <div class="container">
     <div class="nav-inner">
       <a href="#" class="nav-logo">
-        <svg class="nav-logo-mark" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M20 2L23.5 14.5H36.5L26 22.5L29.5 35L20 27L10.5 35L14 22.5L3.5 14.5H16.5L20 2Z" fill="#1B2B5E"/>
-          <path d="M20 2L22 10H28L23 14L25 22L20 18L15 22L17 14L12 10H18L20 2Z" fill="#F5921E"/>
-          <circle cx="20" cy="20" r="3" fill="#F5C518"/>
-        </svg>
+        <img src="images/logo.png" alt="XSL AI Academy Logo" class="nav-logo-mark" style="width: 40px; height: 40px; object-fit: contain;">
         <div class="nav-logo-text">
           XSL AI Academy
           <span>Work Smarter</span>
@@ -1074,26 +1070,16 @@
     </div>
     <div class="cards-grid">
       <div class="card instructor-card reveal">
-        <div class="instructor-photo">PHOTO PLACEHOLDER<br>Kiran Gopinath<br>280 x 280px circle</div>
+        <img src="images/kiran.webp" alt="Kiran Gopinath - Co-Founder" class="instructor-photo" style="object-fit: cover; object-position: center;">
         <h3>Kiran Gopinath</h3>
-        <p class="instructor-cred">AI Strategist and CEO, XSL Consulting</p>
+        <p class="instructor-cred">Co-Founder</p>
         <p class="instructor-bio">Kiran has spent the last several years helping businesses and real estate teams integrate AI into their daily workflows — without breaking what already works. With 25+ years in technology and a Fortune 500 background, he knows where AI delivers results and where it doesn't. He built this workshop because he kept seeing the same problem: agents interested in AI but with no clear path to actually using it.</p>
-        <div class="instructor-social">
-          <a href="#" aria-label="LinkedIn">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
-          </a>
-        </div>
       </div>
       <div class="card instructor-card reveal" style="transition-delay:100ms">
         <img src="images/brett.webp" alt="Brett Schoeneck - AI Implementation Specialist" class="instructor-photo" style="object-fit: cover; object-position: center;">
         <h3>Brett Schoeneck</h3>
-        <p class="instructor-cred">AI Implementation Specialist</p>
+        <p class="instructor-cred">Co-Founder</p>
         <p class="instructor-bio">Brett brings 15+ years of technology and AI implementation experience to the room. He specializes in making complex tools feel simple and immediately useful. During this workshop, he'll guide you through the hands-on exercises — showing you exactly how to use these tools the way they're meant to be used. Not theory. Practice.</p>
-        <div class="instructor-social">
-          <a href="#" aria-label="LinkedIn">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
-          </a>
-        </div>
       </div>
     </div>
   </div>
@@ -1219,8 +1205,8 @@
     <h2 class="reveal">Your Competitors Are Already Thinking About This.</h2>
     <p class="lead reveal" style="transition-delay:100ms">Don't spend six months figuring it out on your own. Join us and compress that timeline to four hours.</p>
     <div id="waitlistWrap" class="reveal" style="transition-delay:200ms">
-      <form class="waitlist-form" id="waitlistForm" onsubmit="handleSubmit(event)">
-        <input type="email" placeholder="Enter your email" required aria-label="Email address">
+      <form class="waitlist-form" id="waitlistForm" action="https://formspree.io/f/mqewdkej" method="POST">
+        <input type="email" name="email" placeholder="Enter your email" required aria-label="Email address">
         <button type="submit" class="btn btn-primary">Claim Your Spot</button>
       </form>
       <p class="cta-location-note">Coming to Orange County and San Diego &nbsp;·&nbsp; Workshop dates coming soon</p>
@@ -1239,11 +1225,7 @@
     <div class="footer-grid">
       <div class="footer-brand">
         <a href="#" class="nav-logo" style="margin-bottom:0">
-          <svg class="nav-logo-mark" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M20 2L23.5 14.5H36.5L26 22.5L29.5 35L20 27L10.5 35L14 22.5L3.5 14.5H16.5L20 2Z" fill="rgba(255,255,255,0.15)"/>
-            <path d="M20 2L22 10H28L23 14L25 22L20 18L15 22L17 14L12 10H18L20 2Z" fill="#F5921E"/>
-            <circle cx="20" cy="20" r="3" fill="#F5C518"/>
-          </svg>
+          <img src="images/logo.png" alt="XSL AI Academy Logo" class="nav-logo-mark" style="width: 40px; height: 40px; object-fit: contain;">
           <div class="nav-logo-text">
             XSL AI Academy
             <span>Work Smarter</span>
@@ -1332,35 +1314,7 @@
   });
 
   // ===== WAITLIST FORM =====
-  function handleSubmit(e) {
-    e.preventDefault();
-    const form = e.target;
-    const email = form.querySelector('input[type="email"]').value;
-    const wrap = document.getElementById('waitlistWrap');
-    const msg = document.getElementById('successMsg');
-    
-    // TODO: Replace with your email service (Mailchimp, ConvertKit, etc.)
-    // For now, this logs to console. Add your integration here:
-    console.log('Waitlist signup:', email);
-    
-    // You can uncomment below and add your Formspree endpoint:
-    // fetch('https://formspree.io/f/YOUR_FORM_ID', {
-    //   method: 'POST',
-    //   headers: { 'Content-Type': 'application/json' },
-    //   body: JSON.stringify({ email: email })
-    // });
-    
-    // Show success message
-    wrap.style.transition = 'opacity 300ms ease-out';
-    wrap.style.opacity = '0';
-    setTimeout(() => {
-      wrap.style.display = 'none';
-      msg.style.display = 'block';
-      msg.style.opacity = '0';
-      msg.style.transition = 'opacity 400ms ease-out';
-      setTimeout(() => { msg.style.opacity = '1'; }, 50);
-    }, 300);
-  }
+  // Form submission handled by Formspree (action="https://formspree.io/f/mqewdkej")
 </script>
 </body>
 </html>
