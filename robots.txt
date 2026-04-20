@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://iambarabbas.github.io/xsl-ai-academy/sitemap.xml
