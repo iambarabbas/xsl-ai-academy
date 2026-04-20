@@ -431,6 +431,10 @@
       padding: 16px;
       text-align: center;
     }
+    .instructor-photo[src] {
+      padding: 0;
+      object-fit: cover;
+    }
     .instructor-card h3 { font-size: 28px; margin-bottom: 6px; }
     .instructor-cred { font-size: 16px; font-weight: 600; color: var(--orange); margin-bottom: 16px; }
     .instructor-bio { font-size: 15px; color: var(--body-text); line-height: 1.75; max-width: 380px; margin: 0 auto 20px; }
@@ -1081,7 +1085,7 @@
         </div>
       </div>
       <div class="card instructor-card reveal" style="transition-delay:100ms">
-        <div class="instructor-photo">PHOTO PLACEHOLDER<br>Brett Schoeneck<br>280 x 280px circle</div>
+        <img src="images/brett.webp" alt="Brett Schoeneck - AI Implementation Specialist" class="instructor-photo" style="object-fit: cover; object-position: center;">
         <h3>Brett Schoeneck</h3>
         <p class="instructor-cred">AI Implementation Specialist</p>
         <p class="instructor-bio">Brett brings 15+ years of technology and AI implementation experience to the room. He specializes in making complex tools feel simple and immediately useful. During this workshop, he'll guide you through the hands-on exercises — showing you exactly how to use these tools the way they're meant to be used. Not theory. Practice.</p>
