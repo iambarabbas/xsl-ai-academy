@@ -48,6 +48,11 @@
       --font-body: 'Inter', sans-serif;
       --radius: 12px;
       --radius-sm: 8px;
+      --caption: #A0A8B0;
+      --orange-active: #C2700E;
+      --dark-divider: #3A4A6E;
+      --radius-pill: 999px;
+      --transition: 300ms ease-out;
     }
 
     html { scroll-behavior: smooth; }
@@ -59,6 +64,7 @@
       background: var(--white);
       line-height: 1.75;
       -webkit-font-smoothing: antialiased;
+      padding-top: 80px;
     }
 
     .container { 
@@ -66,6 +72,136 @@
       margin: 0 auto; 
       padding: 0 40px; 
     }
+
+
+    /* ===== NAV ===== */
+    #nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      height: 80px;
+      background: var(--white);
+      z-index: 1000;
+      transition: box-shadow var(--transition);
+    }
+    #nav.scrolled { box-shadow: 0 2px 8px rgba(0,0,0,0.08); }
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 100%;
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 40px;
+    }
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+    }
+    .nav-logo-mark {
+      width: 40px;
+      height: 40px;
+      position: relative;
+    }
+    .nav-logo-text {
+      font-family: var(--font-display);
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--navy);
+      line-height: 1.1;
+    }
+    .nav-logo-text span { display: block; font-size: 11px; font-weight: 500; color: var(--muted); text-transform: uppercase; letter-spacing: 0.06em; }
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 40px;
+      list-style: none;
+    }
+    .nav-links a {
+      font-size: 15px;
+      font-weight: 500;
+      color: var(--body-text);
+      text-decoration: none;
+      transition: color var(--transition);
+    }
+    .nav-links a:hover { color: var(--orange); }
+    .nav-cta { display: flex; gap: 12px; align-items: center; }
+
+    /* Hamburger */
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      padding: 4px;
+      background: none;
+      border: none;
+    }
+    .hamburger span {
+      display: block;
+      width: 24px;
+      height: 2px;
+      background: var(--navy);
+      transition: all var(--transition);
+      border-radius: 2px;
+    }
+    .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .hamburger.open span:nth-child(2) { opacity: 0; }
+    .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+    .mobile-menu {
+      display: none;
+      position: fixed;
+      top: 64px; left: 0; right: 0; bottom: 0;
+      background: var(--white);
+      z-index: 999;
+      flex-direction: column;
+      padding: 32px 24px;
+      gap: 0;
+      transform: translateY(100%);
+      transition: transform var(--transition);
+    }
+    .mobile-menu.open { transform: translateY(0); }
+    .mobile-menu a {
+      display: block;
+      font-size: 18px;
+      font-weight: 500;
+      color: var(--body-text);
+      text-decoration: none;
+      padding: 20px 0;
+      border-bottom: 1px solid var(--border);
+      transition: color var(--transition);
+    }
+    .mobile-menu a:hover { color: var(--orange); }
+    .mobile-menu .btn { width: 100%; margin-top: 32px; }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-body);
+      font-size: 16px;
+      font-weight: 600;
+      letter-spacing: 0.02em;
+      text-transform: uppercase;
+      padding: 14px 28px;
+      height: 48px;
+      border-radius: var(--radius-sm);
+      border: none;
+      cursor: pointer;
+      text-decoration: none;
+      transition: all var(--transition);
+      white-space: nowrap;
+      min-width: 180px;
+    }
+    .btn-primary {
+      background: var(--orange);
+      color: var(--white);
+    }
+    .btn-primary:hover { background: var(--orange-hover); }
+    .btn-primary:active { background: var(--orange-active); }
+    .btn-sm { font-size: 14px; padding: 10px 24px; height: 40px; min-width: 0; }
 
     .blog-header {
       padding: 40px 0 24px;
@@ -171,6 +307,13 @@
 
     /* Mobile Styles */
     @media (max-width: 768px) {
+      body { padding-top: 64px; }
+      #nav { height: 64px; }
+      .nav-inner { padding: 0 20px; }
+      .nav-links, .nav-cta { display: none; }
+      .hamburger { display: flex; }
+      .mobile-menu { display: flex; }
+
       .container {
         padding: 0 20px;
       }
@@ -212,11 +355,45 @@
   </style>
 </head>
 <body>
+
+<!-- ===== NAV ===== -->
+<nav id="nav">
+  <div class="nav-inner">
+    <a href="/" class="nav-logo">
+      <img src="../images/logo.png" alt="XSL AI Academy Logo" class="nav-logo-mark" style="width: 40px; height: 40px; object-fit: contain;">
+      <div class="nav-logo-text">
+        XSL AI Academy
+        <span>Work Smarter</span>
+      </div>
+    </a>
+    <ul class="nav-links">
+      <li><a href="/#curriculum">Curriculum</a></li>
+      <li><a href="/#instructors">Instructors</a></li>
+      <li><a href="/#pricing">Pricing</a></li>
+      <li><a href="/#faq">FAQ</a></li>
+      <li><a href="/blog/">Blog</a></li>
+    </ul>
+    <div class="nav-cta">
+      <a href="/#cta-final" class="btn btn-primary btn-sm">Join Waitlist</a>
+    </div>
+    <button class="hamburger" id="hamburger" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- Mobile Menu -->
+<div class="mobile-menu" id="mobileMenu">
+  <a href="/#curriculum" class="mobile-link">Curriculum</a>
+  <a href="/#instructors" class="mobile-link">Instructors</a>
+  <a href="/#pricing" class="mobile-link">Pricing</a>
+  <a href="/#faq" class="mobile-link">FAQ</a>
+  <a href="/blog/" class="mobile-link">Blog</a>
+  <a href="/#cta-final" class="btn btn-primary">Join the Waitlist</a>
+</div>
+
   <div class="container">
     <div class="blog-header">
-      <nav class="blog-nav">
-        <a href="/">← Back to XSL AI Academy</a>
-      </nav>
     </div>
 
     <img src="images/blog2.png" alt="Realtor at a desk writing listing descriptions with AI assistance on laptop" class="hero-image" width="1200" height="628">
@@ -274,12 +451,35 @@
     <p>Join the waitlist at xslaiacademy.com.</p>
 
     <div class="cta-section">
-      <a href="/#cta-final" class="btn">Join the Waitlist</a>
+      <a href="/#cta-final" class="btn btn-primary">Join the Waitlist</a>
     </div>
 
     <footer>
       <p>&copy; 2026 XSL AI Academy. All rights reserved.</p>
     </footer>
   </div>
+
+<script>
+  // ===== STICKY NAV =====
+  const nav = document.getElementById('nav');
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('scrolled', window.scrollY > 80);
+  });
+
+  // ===== HAMBURGER =====
+  const hamburger = document.getElementById('hamburger');
+  const mobileMenu = document.getElementById('mobileMenu');
+  hamburger.addEventListener('click', () => {
+    hamburger.classList.toggle('open');
+    mobileMenu.classList.toggle('open');
+  });
+  document.querySelectorAll('.mobile-link, .mobile-menu .btn').forEach(link => {
+    link.addEventListener('click', () => {
+      hamburger.classList.remove('open');
+      mobileMenu.classList.remove('open');
+    });
+  });
+</script>
+
 </body>
 </html>
