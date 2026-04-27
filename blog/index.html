@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Blog | XSL AI Academy - AI for Real Estate Agents</title>
+  <meta name="description" content="Learn how Southern California realtors are using Claude AI to save 20+ hours a month, write better listings, and close more deals without working more.">
+  <meta property="og:title" content="Blog | XSL AI Academy">
+  <meta property="og:description" content="AI strategies and insights for Southern California realtors.">
+  <meta property="og:url" content="https://xslaiacademy.com/blog/">
+  <meta property="og:type" content="website">
+  <link rel="canonical" href="https://xslaiacademy.com/blog/">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --white: #FFFFFF;
+      --bg-secondary: #F9F8FB;
+      --navy: #1B2B5E;
+      --body-text: #2D3E52;
+      --muted: #747880;
+      --orange: #F5921E;
+      --orange-hover: #DC841B;
+      --border: #E8E8ED;
+      --font-display: 'Plus Jakarta Sans', sans-serif;
+      --font-body: 'Inter', sans-serif;
+      --radius: 12px;
+      --radius-sm: 8px;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--font-body);
+      font-size: 16px;
+      color: var(--body-text);
+      background: var(--white);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .container { 
+      max-width: 1280px; 
+      margin: 0 auto; 
+      padding: 0 40px; 
+    }
+
+    .blog-header {
+      padding: 60px 0 40px;
+      text-align: center;
+    }
+
+    .blog-nav {
+      margin-bottom: 32px;
+    }
+
+    .blog-nav a {
+      color: var(--navy);
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 16px;
+      transition: opacity 0.2s;
+    }
+
+    .blog-nav a:hover {
+      opacity: 0.7;
+    }
+
+    h1 {
+      font-family: var(--font-display);
+      font-size: 56px;
+      font-weight: 700;
+      color: var(--navy);
+      line-height: 1.2;
+      margin-bottom: 16px;
+    }
+
+    .subtitle {
+      font-size: 20px;
+      color: var(--body-text);
+      max-width: 640px;
+      margin: 0 auto;
+    }
+
+    .blog-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+      gap: 40px;
+      padding: 60px 0 80px;
+    }
+
+    .blog-card {
+      background: var(--white);
+      border-radius: var(--radius);
+      overflow: hidden;
+      border: 1px solid var(--border);
+      transition: all 0.3s ease;
+      text-decoration: none;
+      display: block;
+    }
+
+    .blog-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 24px rgba(27, 43, 94, 0.1);
+    }
+
+    .blog-card-image {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      display: block;
+    }
+
+    .blog-card-content {
+      padding: 24px;
+    }
+
+    .blog-card-meta {
+      font-size: 13px;
+      color: var(--muted);
+      margin-bottom: 12px;
+    }
+
+    .blog-card-title {
+      font-family: var(--font-display);
+      font-size: 24px;
+      font-weight: 600;
+      color: var(--navy);
+      line-height: 1.3;
+      margin-bottom: 12px;
+    }
+
+    .blog-card-excerpt {
+      font-size: 15px;
+      color: var(--body-text);
+      line-height: 1.6;
+    }
+
+    .read-more {
+      display: inline-flex;
+      align-items: center;
+      color: var(--orange);
+      font-weight: 600;
+      font-size: 14px;
+      text-transform: uppercase;
+      letter-spacing: 0.02em;
+      margin-top: 16px;
+      transition: gap 0.2s;
+      gap: 8px;
+    }
+
+    .read-more:hover {
+      gap: 12px;
+    }
+
+    footer {
+      padding: 40px 0;
+      text-align: center;
+      font-size: 14px;
+      color: var(--muted);
+      border-top: 1px solid var(--border);
+    }
+
+    /* Mobile Styles */
+    @media (max-width: 768px) {
+      .container {
+        padding: 0 20px;
+      }
+
+      h1 {
+        font-size: 36px;
+      }
+
+      .subtitle {
+        font-size: 18px;
+      }
+
+      .blog-grid {
+        grid-template-columns: 1fr;
+        gap: 32px;
+        padding: 40px 0 60px;
+      }
+
+      .blog-card-content {
+        padding: 20px;
+      }
+
+      .blog-card-title {
+        font-size: 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="blog-header">
+      <nav class="blog-nav">
+        <a href="/">← Back to XSL AI Academy</a>
+      </nav>
+      <h1>Blog</h1>
+      <p class="subtitle">Practical insights on using AI for real estate in Southern California</p>
+    </div>
+
+    <div class="blog-grid">
+      <!-- Blog 1 -->
+      <a href="ai-for-realtors-orange-county.html" class="blog-card">
+        <img src="images/blog1.png" alt="Orange County Realtors Using AI" class="blog-card-image" width="360" height="200">
+        <div class="blog-card-content">
+          <div class="blog-card-meta">April 26, 2026 • 5 min read</div>
+          <h2 class="blog-card-title">How Orange County Realtors Are Using AI to Save 20+ Hours a Month</h2>
+          <p class="blog-card-excerpt">Active realtors in Orange County are using Claude AI to cut listing time, automate follow-ups, and reclaim 20+ hours a month.</p>
+          <span class="read-more">Read More →</span>
+        </div>
+      </a>
+
+      <!-- Blog 2 -->
+      <a href="ai-listing-descriptions-realtors.html" class="blog-card">
+        <img src="images/blog2.png" alt="Listing Description Problem" class="blog-card-image" width="360" height="200">
+        <div class="blog-card-content">
+          <div class="blog-card-meta">April 26, 2026 • 5 min read</div>
+          <h2 class="blog-card-title">The Listing Description Problem: How Realtors Are Losing Hours Every Week</h2>
+          <p class="blog-card-excerpt">Most Southern California realtors spend 45-60 minutes writing a single listing. AI can cut that to 10.</p>
+          <span class="read-more">Read More →</span>
+        </div>
+      </a>
+
+      <!-- Blog 3 -->
+      <a href="ai-for-realtors-san-diego.html" class="blog-card">
+        <img src="images/blog3.png" alt="San Diego Realtors Using AI" class="blog-card-image" width="360" height="200">
+        <div class="blog-card-content">
+          <div class="blog-card-meta">April 26, 2026 • 5 min read</div>
+          <h2 class="blog-card-title">How San Diego Realtors Are Using AI to Close More Without Working More</h2>
+          <p class="blog-card-excerpt">San Diego agents are using Claude AI to cut admin time, write better listings, and send more consistent follow-ups.</p>
+          <span class="read-more">Read More →</span>
+        </div>
+      </a>
+
+      <!-- Blog 4 -->
+      <a href="top-realtors-working-smarter-ai.html" class="blog-card">
+        <img src="images/blog4.png" alt="Top Realtors Working Smarter" class="blog-card-image" width="360" height="200">
+        <div class="blog-card-content">
+          <div class="blog-card-meta">April 26, 2026 • 5 min read</div>
+          <h2 class="blog-card-title">What Top Realtors Know About Working Smarter (That Most Agents Are Still Figuring Out)</h2>
+          <p class="blog-card-excerpt">Top-producing realtors aren't working more hours. They've changed the ratio of high-value to admin work.</p>
+          <span class="read-more">Read More →</span>
+        </div>
+      </a>
+
+      <!-- Blog 5 -->
+      <a href="real-estate-tasks-ai-handles-well.html" class="blog-card">
+        <img src="images/blog5.png" alt="Real Estate Tasks AI Handles Well" class="blog-card-image" width="360" height="200">
+        <div class="blog-card-content">
+          <div class="blog-card-meta">April 26, 2026 • 5 min read</div>
+          <h2 class="blog-card-title">5 Real Estate Tasks AI Handles Surprisingly Well (And How Realtors Are Using Them)</h2>
+          <p class="blog-card-excerpt">These five everyday tasks are where agents are seeing the biggest time savings, from listings to follow-up to market reports.</p>
+          <span class="read-more">Read More →</span>
+        </div>
+      </a>
+    </div>
+
+    <footer>
+      <p>&copy; 2026 XSL AI Academy. All rights reserved.</p>
+    </footer>
+  </div>
+</body>
+</html>
