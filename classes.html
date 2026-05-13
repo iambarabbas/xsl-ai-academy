@@ -1,0 +1,744 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Classes - Build Your Real Estate AI Agent | XSL AI Academy</title>
+  <meta name="description" content="The AI Agent Series - Session 1: Build Your Real Estate AI Agent. A 2-hour hands-on Claude workshop for Southern California Realtors.">
+  <meta name="keywords" content="AI workshop for realtors, Claude AI real estate, real estate AI training, AI agent, AI for real estate agents">
+  <meta property="og:title" content="Build Your Real Estate AI Agent | XSL AI Academy">
+  <meta property="og:description" content="Stop using AI like a stranger. Build a personal AI agent that knows your voice, your market, and your clients in 2 hours.">
+  <meta property="og:url" content="https://xslaiacademy.com/classes">
+  <meta property="og:type" content="website">
+  <link rel="canonical" href="https://xslaiacademy.com/classes">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --white: #FFFFFF;
+      --bg-secondary: #F9F8FB;
+      --navy: #1B2B5E;
+      --body-text: #2D3E52;
+      --muted: #747880;
+      --caption: #A0A8B0;
+      --orange: #F5921E;
+      --orange-hover: #DC841B;
+      --orange-active: #C2700E;
+      --border: #E8E8ED;
+      --border-light: #F0EFEF;
+      --placeholder-bg: #F0EFEF;
+      --success: #10B981;
+      --error: #EF4444;
+      --hover-surface: #F5F5F7;
+      --dark-divider: #3A4A6E;
+      --font-display: 'Plus Jakarta Sans', sans-serif;
+      --font-body: 'Inter', sans-serif;
+      --radius: 12px;
+      --radius-sm: 8px;
+      --radius-pill: 999px;
+      --transition: 300ms ease-out;
+      --section-pad: 120px;
+      --max-width: 1280px;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--font-body);
+      font-size: 16px;
+      color: var(--body-text);
+      background: var(--white);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ===== UTILITIES ===== */
+    .container { max-width: var(--max-width); margin: 0 auto; padding: 0 40px; }
+    .section-pad { padding: var(--section-pad) 0; }
+    .bg-secondary { background: var(--bg-secondary); }
+    .bg-dark { background: var(--navy); }
+    .text-center { text-align: center; }
+    .text-white { color: var(--white); }
+
+    h1, h2, h3, h4 { font-family: var(--font-display); color: var(--navy); }
+    h1 { font-size: 64px; font-weight: 700; line-height: 1.2; letter-spacing: -0.02em; }
+    h2 { font-size: 48px; font-weight: 700; line-height: 1.3; letter-spacing: -0.01em; }
+    h3 { font-size: 32px; font-weight: 600; line-height: 1.4; }
+    h4 { font-size: 22px; font-weight: 600; line-height: 1.5; }
+
+    .lead { font-size: 20px; font-weight: 500; line-height: 1.6; }
+    .small { font-size: 14px; }
+    .caption { font-size: 12px; font-weight: 500; letter-spacing: 0.04em; }
+
+    .section-header { margin-bottom: 64px; }
+    .section-header p { max-width: 740px; margin: 16px auto 0; color: var(--body-text); }
+
+    /* ===== BUTTONS ===== */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-body);
+      font-size: 16px;
+      font-weight: 600;
+      letter-spacing: 0.02em;
+      text-transform: uppercase;
+      padding: 14px 28px;
+      height: 48px;
+      border-radius: var(--radius-sm);
+      border: none;
+      cursor: pointer;
+      text-decoration: none;
+      transition: all var(--transition);
+      white-space: nowrap;
+      min-width: 180px;
+    }
+
+    .btn-primary {
+      background: var(--orange);
+      color: var(--white);
+    }
+    .btn-primary:hover { background: var(--orange-hover); }
+
+    .btn-secondary {
+      background: var(--white);
+      color: var(--navy);
+      border: 2px solid var(--border);
+    }
+    .btn-secondary:hover { background: var(--hover-surface); border-color: var(--navy); }
+
+    /* ===== NAV ===== */
+    #nav {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background: var(--white);
+      height: 80px;
+      border-bottom: 1px solid var(--border-light);
+      transition: box-shadow var(--transition);
+    }
+
+    #nav.scrolled { box-shadow: 0 2px 8px rgba(0,0,0,0.08); }
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 0 40px;
+      height: 100%;
+    }
+
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+    }
+
+    .nav-logo-mark {
+      width: 48px;
+      height: 48px;
+      border-radius: var(--radius-sm);
+    }
+
+    .nav-logo-text {
+      font-family: var(--font-display);
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--navy);
+    }
+
+    .nav-logo-text span { display: block; font-size: 11px; font-weight: 500; color: var(--muted); text-transform: uppercase; letter-spacing: 0.06em; }
+    .nav-links {
+      display: flex;
+      gap: 32px;
+      list-style: none;
+      align-items: center;
+    }
+
+    .nav-links a {
+      font-size: 15px;
+      font-weight: 500;
+      color: var(--body-text);
+      text-decoration: none;
+      transition: color var(--transition);
+    }
+
+    .nav-links a:hover { color: var(--orange); }
+    .nav-links a.active { color: var(--orange); font-weight: 600; }
+    .nav-cta { display: flex; gap: 12px; align-items: center; }
+
+    @media (max-width: 1024px) {
+      h1 { font-size: 48px; }
+      h2 { font-size: 36px; }
+      h3 { font-size: 28px; }
+      .container { padding: 0 24px; }
+      .nav-links, .nav-cta { display: none; }
+    }
+
+    /* ===== HERO ===== */
+    .hero {
+      padding: 60px 0;
+      background: linear-gradient(180deg, var(--bg-secondary) 0%, var(--white) 100%);
+      min-height: calc(100vh - 80px);
+      display: flex;
+      align-items: center;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: center;
+    }
+
+    .hero-content {
+      text-align: left;
+    }
+
+    .hero-badge {
+      display: inline-block;
+      background: var(--orange);
+      color: var(--white);
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      padding: 6px 16px;
+      border-radius: var(--radius-pill);
+      margin-bottom: 20px;
+    }
+
+    .hero h1 {
+      font-size: 56px;
+      margin-bottom: 20px;
+      line-height: 1.1;
+    }
+
+    .hero .subtitle {
+      font-size: 22px;
+      font-weight: 600;
+      color: var(--orange);
+      margin-bottom: 16px;
+    }
+
+    .hero .lead {
+      font-size: 18px;
+      line-height: 1.6;
+      margin-bottom: 32px;
+      color: var(--body-text);
+    }
+
+    .hero-image-wrap {
+      position: relative;
+    }
+
+    .hero-image {
+      width: 100%;
+      height: auto;
+      border-radius: var(--radius);
+      box-shadow: 0 20px 60px rgba(0,0,0,0.15);
+    }
+
+    .hero-cta-group {
+      display: flex;
+      gap: 16px;
+      align-items: center;
+    }
+
+    .hero-event-info {
+      margin-top: 24px;
+      padding: 20px;
+      background: var(--white);
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--border);
+    }
+
+    .hero-event-info p {
+      margin: 0;
+      font-size: 15px;
+      color: var(--body-text);
+    }
+
+    .hero-event-info strong {
+      color: var(--navy);
+      font-weight: 600;
+    }
+
+    @media (max-width: 1024px) {
+      .hero {
+        min-height: auto;
+        padding: 40px 0;
+      }
+
+      .hero-grid {
+        grid-template-columns: 1fr;
+        gap: 40px;
+      }
+
+      .hero-content {
+        text-align: center;
+      }
+
+      .hero h1 {
+        font-size: 42px;
+      }
+
+      .hero .subtitle {
+        font-size: 20px;
+      }
+
+      .hero .lead {
+        font-size: 17px;
+      }
+
+      .hero-cta-group {
+        justify-content: center;
+        flex-wrap: wrap;
+      }
+
+      .hero-image-wrap {
+        order: -1;
+      }
+    }
+
+    /* ===== CONTENT SECTIONS ===== */
+    .content-section {
+      padding: 80px 0;
+    }
+
+    .content-block {
+      max-width: 840px;
+      margin: 0 auto;
+    }
+
+    .content-block h2 {
+      margin-bottom: 24px;
+    }
+
+    .content-block h3 {
+      margin-top: 48px;
+      margin-bottom: 16px;
+    }
+
+    .content-block h4 {
+      margin-top: 32px;
+      margin-bottom: 12px;
+    }
+
+    .content-block p {
+      margin-bottom: 16px;
+      line-height: 1.8;
+    }
+
+    .content-block ul {
+      margin: 24px 0;
+      padding-left: 32px;
+    }
+
+    .content-block li {
+      margin-bottom: 12px;
+      line-height: 1.8;
+    }
+
+    .highlight-box {
+      background: var(--bg-secondary);
+      border-left: 4px solid var(--orange);
+      padding: 24px 32px;
+      margin: 32px 0;
+      border-radius: var(--radius-sm);
+    }
+
+    .testimonial-box {
+      background: var(--white);
+      border: 2px solid var(--border);
+      padding: 32px;
+      margin: 48px 0;
+      border-radius: var(--radius);
+      font-style: italic;
+      color: var(--body-text);
+    }
+
+    .testimonial-box .quote {
+      font-size: 18px;
+      line-height: 1.6;
+      margin-bottom: 16px;
+    }
+
+    .testimonial-box .attribution {
+      font-style: normal;
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--muted);
+    }
+
+    .schedule-grid {
+      display: grid;
+      gap: 16px;
+      margin: 32px 0;
+    }
+
+    .schedule-item {
+      background: var(--white);
+      border: 1px solid var(--border);
+      padding: 20px 24px;
+      border-radius: var(--radius-sm);
+    }
+
+    .schedule-time {
+      font-weight: 700;
+      color: var(--orange);
+      margin-bottom: 8px;
+    }
+
+    .schedule-title {
+      font-weight: 600;
+      color: var(--navy);
+      margin-bottom: 4px;
+    }
+
+    .prompts-list {
+      background: var(--bg-secondary);
+      padding: 32px;
+      border-radius: var(--radius);
+      margin: 32px 0;
+    }
+
+    .prompts-list h4 {
+      margin-top: 0;
+      margin-bottom: 20px;
+    }
+
+    .prompts-list ul {
+      margin: 0;
+      padding-left: 24px;
+    }
+
+    /* ===== CTA SECTION ===== */
+    .cta-section {
+      background: var(--navy);
+      color: var(--white);
+      padding: 80px 0;
+      text-align: center;
+    }
+
+    .cta-section h2 {
+      color: var(--white);
+      margin-bottom: 24px;
+    }
+
+    .cta-section p {
+      font-size: 18px;
+      margin-bottom: 32px;
+      color: rgba(255,255,255,0.9);
+    }
+
+    /* ===== FOOTER ===== */
+    footer {
+      background: var(--navy);
+      color: rgba(255,255,255,0.7);
+      padding: 48px 0 32px;
+    }
+
+    .footer-content {
+      text-align: center;
+    }
+
+    .footer-links {
+      display: flex;
+      justify-content: center;
+      gap: 32px;
+      margin-bottom: 24px;
+    }
+
+    .footer-links a {
+      color: rgba(255,255,255,0.7);
+      text-decoration: none;
+      font-size: 14px;
+    }
+
+    .footer-links a:hover {
+      color: var(--white);
+    }
+
+    .footer-copyright {
+      font-size: 14px;
+      color: rgba(255,255,255,0.5);
+    }
+  </style>
+</head>
+<body>
+
+<nav id="nav">
+  <div class="nav-inner">
+    <a href="/" class="nav-logo">
+      <img src="images/logo.png" alt="XSL AI Academy Logo" class="nav-logo-mark" style="width: 40px; height: 40px; object-fit: contain;">
+      <div class="nav-logo-text">
+        XSL AI ACADEMY
+        <span>AI Training for Realtors</span>
+      </div>
+    </a>
+    <ul class="nav-links">
+      <li><a href="/#curriculum">Curriculum</a></li>
+      <li><a href="/#instructors">Instructors</a></li>
+      <li><a href="/#pricing">Pricing</a></li>
+      <li><a href="/#faq">FAQ</a></li>
+      <li><a href="/blog/">Blog</a></li>
+      <li><a href="/classes" class="active">Classes</a></li>
+    </ul>
+    <div class="nav-cta">
+      <a href="https://www.eventbrite.com/e/work-smarter-with-claude-ai-realtor-edition-live-workshop-happy-hour-tickets-1989255236963?aff=oddtdtcreator" class="btn btn-primary btn-sm" target="_blank" rel="noopener">Register Now</a>
+    </div>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="container">
+    <div class="hero-grid">
+      <div class="hero-content">
+        <div class="hero-badge">THE AI AGENT SERIES | SESSION 1</div>
+        <h1>Build Your Real Estate AI Agent</h1>
+        <p class="subtitle">A 2-Hour Claude Workshop for Southern California Realtors</p>
+        <p class="lead">Stop using AI like a stranger. In 2 hours you will build a personal AI agent that knows your voice, your market, and your clients. Ready to work for you all day, every day.</p>
+        <div class="hero-cta-group">
+          <a href="https://www.eventbrite.com/e/work-smarter-with-claude-ai-realtor-edition-live-workshop-happy-hour-tickets-1989255236963?aff=oddtdtcreator" class="btn btn-primary" target="_blank" rel="noopener">Register Now - $249</a>
+        </div>
+        <div class="hero-event-info">
+          <p><strong>📅 Wednesday, May 20, 2026</strong> • 3:00-5:00 PM</p>
+          <p style="margin-top: 8px;"><strong>📍 Hyatt Regency Newport Beach</strong> • 1107 Jamboree Road</p>
+        </div>
+      </div>
+      <div class="hero-image-wrap">
+        <img src="images/ai.png" alt="AI Agent Workshop" class="hero-image">
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="content-section">
+  <div class="container">
+    <div class="content-block">
+      
+      <h2>Overview</h2>
+      <p>You are not just a Realtor. You are a marketer, negotiator, researcher, communicator, and administrator, all at once, all solo. 87% of Realtors are independent contractors with no support staff. The ones pulling ahead right now are not working harder. They built a better system.</p>
+      
+      <p>This is not a class about prompting. This is not a tips-and-tricks seminar. This is a 2-hour hands-on session where you build your own AI agent, configured to your voice, your market, and your clients, using Claude, the AI assistant built by Anthropic.</p>
+      
+      <p><strong>You leave with a working tool, not a list of things to try later.</strong></p>
+
+      <h2>What Makes This Different</h2>
+      <p>Most AI workshops teach you how to use AI. You leave with knowledge.</p>
+      <p><strong>This workshop builds you an agent. You leave with a tool.</strong></p>
+      
+      <p>By the end of this session, you will have a fully configured Claude Project: your personal AI agent. It already knows who you are before you type a single word. It knows your brand voice, your market specialty, your client communication style, and your brokerage context. Every task you run through it from that point forward starts from that foundation.</p>
+      
+      <p>That is what separates this from a YouTube tutorial or a generic AI seminar. This is your agent, built by you, in this room.</p>
+
+      <h2>What This Agent Is Actually Solving</h2>
+      <p>Think about the last time you did any of these:</p>
+      <ul>
+        <li>Spent nearly an hour writing a listing description that could have taken only a few minutes</li>
+        <li>Got a new lead and meant to follow up, and then did not respond fast enough</li>
+        <li>Walked into a negotiation without a clear strategy or prepared talking points</li>
+        <li>Fell behind on your database touchpoints for the third month in a row</li>
+        <li>Rewrote a price-reduction email to a seller four times before hitting send</li>
+      </ul>
+      
+      <p>These are not motivation problems. They are leverage problems. You are one person running a full-service business, and the math does not work without a system behind you.</p>
+      
+      <p><strong>Your AI agent is that system. In this session, we build it together.</strong></p>
+
+      <h2>What You Will Build and Leave With</h2>
+      <p>During the session, live, you will:</p>
+      <ul>
+        <li><strong>Write your agent's context file:</strong> the document that tells Claude exactly who you are, how you communicate, what your market looks like, and how to handle your clients</li>
+        <li><strong>Set your Claude Project rules:</strong> the standing instructions that shape every response your agent gives you, permanently</li>
+        <li><strong>Upload your knowledge files:</strong> past listings, your bio, and writing samples that train your agent on your voice</li>
+        <li><strong>Work through 5 core real estate workflows live,</strong> customized to your actual listings and clients</li>
+      </ul>
+
+      <p>You will also leave with:</p>
+      <ul>
+        <li>Access to the <strong>XSL AI Prompt Library:</strong> 10 prompts written specifically for real estate professionals, including 5 built live in the room and 5 in your digital resource portal</li>
+        <li>A digital workbook covering every step so you can rebuild and expand the system independently</li>
+        <li>One drink ticket to the post-workshop happy hour</li>
+        <li>A login to the XSL AI Academy resource portal where your prompt library and workshop materials live</li>
+      </ul>
+
+      <div class="testimonial-box">
+        <div class="quote">"I did not expect to leave with something that actually worked. I have sat through AI presentations before and always left with a list of tools I never used. This was different. I left with a Claude Project already set up and used it that same afternoon on a real listing. The description came out better than anything I would have written myself, and it sounded exactly like me."</div>
+        <div class="attribution">— Realtor, Newport Beach | Workshop Pilot Attendee</div>
+      </div>
+
+      <h2>Who This Is For</h2>
+      <p>Active Realtors in Southern California who want to work smarter, respond faster, and spend their time on the parts of the business that actually need them. Whether you have been thinking about AI for months or you simply want a more efficient way to handle client communications, listing content, and follow-up, this session is built around your daily reality.</p>
+      
+      <p><strong>No technical background required.</strong> If you can send an email, you can do this.</p>
+      
+      <p>Bring a current listing or a recent client scenario you want to work on live. That is your raw material for the session.</p>
+      
+      <div class="highlight-box">
+        <p><strong>Team leads and brokers:</strong> if you want to understand what AI can do before rolling it out across your agents, this session gives you exactly that foundation. Contact us about group rates for 2 or more agents from the same brokerage.</p>
+      </div>
+
+      <h2>The Format</h2>
+      <p>This is a working session, not a lecture. Have your laptop open and your Claude account active from minute one.</p>
+
+      <div class="schedule-grid">
+        <div class="schedule-item">
+          <div class="schedule-time">3:00 - 3:10</div>
+          <div class="schedule-title">Welcome and framing</div>
+          <div>The full cost of running a real estate business solo, and the case for building an agent rather than just using a tool</div>
+        </div>
+        
+        <div class="schedule-item">
+          <div class="schedule-time">3:10 - 3:25</div>
+          <div class="schedule-title">Claude orientation</div>
+          <div>What makes Claude different, how Projects creates a persistent AI agent, and account setup check</div>
+        </div>
+        
+        <div class="schedule-item">
+          <div class="schedule-time">3:25 - 3:50</div>
+          <div class="schedule-title">Build your agent's foundation</div>
+          <div>Write your context file and set your Claude Project rules, covering your voice, your market, your communication style, and your client approach</div>
+        </div>
+        
+        <div class="schedule-item">
+          <div class="schedule-time">3:50 - 4:30</div>
+          <div class="schedule-title">Live prompt lab</div>
+          <div>Work through 5 core real estate workflows together. Each prompt is demonstrated, then you customize it using your actual listing or client scenario</div>
+        </div>
+        
+        <div class="schedule-item">
+          <div class="schedule-time">4:30 - 4:50</div>
+          <div class="schedule-title">Configure your Project</div>
+          <div>Upload your knowledge files, run a full real-world scenario through your agent, and verify that it sounds like you</div>
+        </div>
+        
+        <div class="schedule-item">
+          <div class="schedule-time">4:50 - 5:00</div>
+          <div class="schedule-title">The Daily Habit</div>
+          <div>The three things to open Claude for before every listing appointment, every new lead, and every active transaction</div>
+        </div>
+        
+        <div class="schedule-item">
+          <div class="schedule-time">5:00 onward</div>
+          <div class="schedule-title">Happy hour</div>
+          <div>One drink ticket included. The conversation after class is part of the value.</div>
+        </div>
+      </div>
+
+      <div class="highlight-box">
+        <p><strong>One topic we cover that most AI workshops skip:</strong> Fair Housing compliance considerations when using AI in your real estate marketing, and how to audit any output before it goes to market.</p>
+      </div>
+
+      <h2>The 5 Prompts You Build Live in the Room</h2>
+      <div class="prompts-list">
+        <p>These are the five prompts you will build, customize, and test during the session using your actual listing or client information:</p>
+        <ul>
+          <li><strong>Prompt 1:</strong> Write a listing description from a bullet-point property brief</li>
+          <li><strong>Prompt 2:</strong> Generate social media captions for a listing across multiple platforms</li>
+          <li><strong>Prompt 3:</strong> Draft a first-response email to a new lead, personalized to their inquiry</li>
+          <li><strong>Prompt 4:</strong> Write a follow-up message for a lead that went cold</li>
+          <li><strong>Prompt 5:</strong> Draft a price-reduction conversation email to a seller</li>
+        </ul>
+        <p style="margin-top: 20px;"><em>Five additional prompts covering your bio, neighborhood market updates, offer letters, open house follow-ups, and database touchpoints are available in your digital resource portal after the workshop.</em></p>
+      </div>
+
+      <h2>Part of The AI Agent Series by XSL AI Academy</h2>
+      <p><strong>Build Your Real Estate AI Agent</strong> is Session 1 of an ongoing series. Future sessions go deeper into specific parts of your business: lead conversion systems, negotiation preparation, transaction coordination workflows, and team-wide AI deployment.</p>
+      
+      <p>Each session is designed to stand completely on its own. You do not need to attend in order. If you attend multiple sessions, you will leave with a more complete system than any single session delivers.</p>
+
+      <h2>What to Bring</h2>
+      <ul>
+        <li>A <strong>laptop, required.</strong> This session is hands-on from the first minute.</li>
+        <li>A <strong>Claude Pro account</strong> ($20/month). See the Claude Requirement section below. Setup instructions are sent 48 hours before the event.</li>
+        <li>One <strong>current listing</strong> or a recent client scenario to work on live.</li>
+        <li><strong>Personal writing samples:</strong> a past listing description, a client email you wrote, or any text that shows how you communicate. Even 2 or 3 examples make a significant difference in how well your agent learns your voice.</li>
+        <li>Your <strong>bio</strong> or a brief description of your market and client focus.</li>
+      </ul>
+
+      <h2>The Claude Requirement</h2>
+      <p>This workshop is built specifically on Claude, the AI assistant made by Anthropic. Claude is not the same as ChatGPT or other AI tools, and the session is designed around a specific Claude feature called Projects.</p>
+      
+      <p><strong>Claude Projects</strong> is what makes a personal AI agent possible. It creates a persistent workspace that holds your Project instructions, your knowledge files, and your context file across every conversation. Without Projects, every conversation starts from scratch and the agent concept breaks down entirely.</p>
+      
+      <p>Projects is available on <strong>Claude Pro at $20 per month.</strong> A free Claude account is not sufficient for this session.</p>
+      
+      <div class="highlight-box">
+        <p>You will receive account setup instructions by email 48 hours before the workshop. Please complete setup before you arrive so we spend the full session building, not troubleshooting logins.</p>
+      </div>
+
+      <h2>Your Instructors</h2>
+      
+      <h4>Brett Schoeneck</h4>
+      <p>Brett has 15 years in technology and AI implementation. He leads the live build segments of every session: he is the person in the room making sure you leave with something that works the same day, not just something you understood during the workshop.</p>
+      
+      <h4>Kiran Gopinath</h4>
+      <p>Kiran spent 25 years building AI systems for businesses ranging from Fortune 500 companies to solo operators before turning that work into practical training for people who do not have time to be tech people. He leads the Claude content and agent architecture in this session.</p>
+
+      <h2 id="register">Pricing</h2>
+      <p style="font-size: 24px; font-weight: 700; color: var(--orange); margin: 24px 0;">$249 per Realtor</p>
+      
+      <p>Includes the 2-hour live session, access to the XSL AI Academy digital resource portal with your prompt library and workbook, and one drink ticket at the post-workshop happy hour.</p>
+      
+      <div class="highlight-box">
+        <p><strong>Bringing your team?</strong> Contact us about group rates for 2 or more agents from the same brokerage.</p>
+      </div>
+      
+      <p style="margin-top: 24px;">Seats are capped intentionally. This is a hands-on build session, not a conference. The room stays small so every attendee gets real time to build and test their agent.</p>
+
+      <h3>Event Details</h3>
+      <div style="background: var(--bg-secondary); padding: 24px; border-radius: var(--radius-sm); margin: 24px 0;">
+        <p style="margin: 0;"><strong>Date:</strong> Wednesday, May 20, 2026</p>
+        <p style="margin: 8px 0 0 0;"><strong>Time:</strong> 3:00 PM - 5:00 PM</p>
+        <p style="margin: 8px 0 0 0;"><strong>Venue:</strong> Hyatt Regency Newport Beach</p>
+        <p style="margin: 8px 0 0 0;"><strong>Address:</strong> 1107 Jamboree Road, Newport Beach, CA 92660</p>
+        <p style="margin: 8px 0 0 0;"><strong>Happy Hour:</strong> 5:00 PM onward (1 drink ticket included)</p>
+        <p style="margin: 8px 0 0 0;"><strong>Parking:</strong> Available on-site at the Hyatt</p>
+      </div>
+
+      <h3>Refund Policy</h3>
+      <p>Full refund available up to 7 days before the event. Within 7 days, your ticket can be transferred to a future session of The AI Agent Series. Tickets are non-transferable to other individuals.</p>
+
+      <h2>About XSL AI Academy</h2>
+      <p>XSL AI Academy is the training division of XSL Consulting LLC. We run practical, no-fluff AI workshops for real estate professionals across Southern California, built around how Realtors actually work, not how tech people think they do.</p>
+      
+      <p>We are based in Orange County. Every session in The AI Agent Series is designed to leave you with a working system, not just an education.</p>
+      
+      <p style="margin-top: 32px;"><a href="/" style="color: var(--orange); font-weight: 600;">xslaiacademy.com</a></p>
+
+    </div>
+  </div>
+</section>
+
+<section class="cta-section">
+  <div class="container">
+    <h2>Ready to Build Your AI Agent?</h2>
+    <p>Join us for the next session and leave with a working tool, not a list of things to try later.</p>
+    <a href="https://www.eventbrite.com/e/work-smarter-with-claude-ai-realtor-edition-live-workshop-happy-hour-tickets-1989255236963?aff=oddtdtcreator" class="btn btn-primary" target="_blank" rel="noopener">Register Now - $249</a>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div class="footer-content">
+      <div class="footer-links">
+        <a href="/">Home</a>
+        <a href="/classes">Classes</a>
+        <a href="/blog/">Blog</a>
+        <a href="/terms.html">Terms</a>
+        <a href="/privacy.html">Privacy</a>
+      </div>
+      <div class="footer-copyright">
+        © 2026 XSL AI Academy. A division of XSL Consulting LLC. All rights reserved.
+      </div>
+    </div>
+  </div>
+</footer
